@@ -1,27 +1,54 @@
-const userInput = prompt("Rock, Paper or Scissors?")
-const computerChoice = ""
+let userChoice;
+let userScore = 0;
+let computerScore = 0;
 
-
-function playRound(userChoice, computerChoice) {
-    if (userChoice == computerChoice) {
-        console.log("Draw!")
-    } else {
-        console.log("A")
-    }
+function getUserChoice() {
+    userChoice  = prompt("Rock, Paper or Scissors?").toUpperCase();
+    return userChoice
 }
 
 function getComputerChoice() {
-    var computerInput = Math.floor(Math.random() * 9)
-
-    if (computerInput > 3) {
-        computerChoice = "rock"
-    } else if (computerInput < 5) {
-        computerChoice = "paper"
-    } else {
-        computerChoice = "scissors"
+    let randomNumber = Math.floor(Math.random() * 3)
+    console.log(randomNumber);
+    switch (randomNumber) {
+        case 0:
+            return "ROCK"
+        case 1:
+            return "PAPER"
+        case 2:
+            return "SCISSORS"
     }
-
-    return computerChoice
 }
 
-playRound(userInput, computerChoice)
+function playRound(userChoice, computerChoice) {
+    if (userChoice === computerChoice) {
+        console.log("Draw!");
+    } else if 
+        ((userChoice === "ROCK" && computerChoice === "PAPER") ||
+        (userChoice === "PAPER" && computerChoice === "SCISSORS") ||
+        (userChoice === "SCISSORS" && computerChoice === "ROCK")) {
+        console.log("You Lose!");
+        computerScore++
+    } else if 
+        ((userChoice === "ROCK" && computerChoice === "SCISSORS") ||
+        (userChoice === "SCISSORS" && computerChoice === "PAPER") ||
+        (userChoice === "PAPER" && computerChoice === "ROCK")) {
+        console.log("You Win!");
+        userScore++
+    }
+}
+
+function trackingScore() {
+    if ((userScore == 5) || (computerScore == 5)) {
+        return 
+    } else {
+        let computerChoice = getComputerChoice();
+        getUserChoice();
+        playRound(userChoice, computerChoice);
+        console.log(computerChoice);
+        console.log(userChoice);
+        trackingScore();
+    }
+}
+
+trackingScore();
