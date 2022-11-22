@@ -8,8 +8,7 @@ function getUserChoice() {
 }
 
 function getComputerChoice() {
-    let randomNumber = Math.floor(Math.random() * 3)
-    console.log(randomNumber);
+    let randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
         case 0:
             return "ROCK"
@@ -27,13 +26,11 @@ function playRound(userChoice, computerChoice) {
         ((userChoice === "ROCK" && computerChoice === "PAPER") ||
         (userChoice === "PAPER" && computerChoice === "SCISSORS") ||
         (userChoice === "SCISSORS" && computerChoice === "ROCK")) {
-        console.log("You Lose!");
         computerScore++
     } else if 
         ((userChoice === "ROCK" && computerChoice === "SCISSORS") ||
         (userChoice === "SCISSORS" && computerChoice === "PAPER") ||
         (userChoice === "PAPER" && computerChoice === "ROCK")) {
-        console.log("You Win!");
         userScore++
     }
 }
@@ -45,8 +42,7 @@ function trackingScore() {
         let computerChoice = getComputerChoice();
         getUserChoice();
         playRound(userChoice, computerChoice);
-        console.log(computerChoice);
-        console.log(userChoice);
+        console.log("Your Score: " + userScore + " Computer Score: " + computerScore);
         trackingScore();
     }
 }
