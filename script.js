@@ -3,7 +3,7 @@ let userScore = 0;
 let computerScore = 0;
 
 function getUserChoice() {
-    userChoice  = prompt("Rock, Paper or Scissors?").toUpperCase();
+    //userChoice  = prompt("Rock, Paper or Scissors?").toUpperCase();
     return userChoice
 }
 
