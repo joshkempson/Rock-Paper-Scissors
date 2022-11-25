@@ -2,9 +2,18 @@ let userChoice;
 let userScore = 0;
 let computerScore = 0;
 
-function getUserChoice() {
-    //userChoice  = prompt("Rock, Paper or Scissors?").toUpperCase();
-    return userChoice
+function getUserChoice(input) {
+    console.log("A");
+
+    if (input == "rock") {
+        userChoice = "ROCK";
+    } else if (input == "paper") {
+        userChoice = "PAPER";
+    } else if (input == "scissors") {
+        userChoice = "SCISSORS";
+    }
+
+    return userChoice;
 }
 
 function getComputerChoice() {
@@ -35,16 +44,58 @@ function playRound(userChoice, computerChoice) {
     }
 }
 
-function trackingScore() {
-    if ((userScore == 5) || (computerScore == 5)) {
-        return 
-    } else {
+function game() {
         let computerChoice = getComputerChoice();
-        getUserChoice();
         playRound(userChoice, computerChoice);
-        console.log("Your Score: " + userScore + " Computer Score: " + computerScore);
-        trackingScore();
-    }
+        userScoreDisplay.textContent = userScore;
+        computerScoreDisplay.textContent = computerScore;
 }
 
-trackingScore();
+const container1 = document.querySelector('#container1');
+const userScoreDiv = document.querySelector('.div1.user');
+const computerScoreDiv = document.querySelector('.div1.computer');
+
+const userScoreDisplay = document.createElement('h2');
+const computerScoreDisplay = document.createElement('h2');
+userScoreDiv.appendChild(userScoreDisplay);
+computerScoreDiv.appendChild(computerScoreDisplay);
+
+userScoreDisplay.setAttribute('class', 'displayScore')
+computerScoreDisplay.setAttribute('class', 'displayScore')
+
+userScoreDisplay.textContent = 0;
+computerScoreDisplay.textContent = 0;
+
+const btnRock = document.querySelector('.btns.rock');
+const btnPaper = document.querySelector('.btns.paper');
+const btnScissors = document.querySelector('.btns.paper');
+
+btnRock.addEventListener('click', function() {
+    getUserChoice("rock");
+    game();
+    trackingScore();
+});
+btnPaper.addEventListener('click', function() {
+    getUserChoice("paper");
+    game();
+    trackingScore();
+});
+btnScissors.addEventListener('click', function() {
+    getUserChoice("scissors");
+    game();
+    trackingScore();
+});
+
+function trackingScore() {
+    if (userScore == 5) {
+        userScoreDisplay.textContent = "Winner!";
+        computerScoreDisplay.textContent = "Loser!";
+        return 
+    } else if (computerScore == 5) {
+        userScoreDisplay.textContent = "Loser!";
+        computerScoreDisplay.textContent = "Winner!";
+        return
+    } else {
+        return
+    }
+}
